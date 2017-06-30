@@ -12,7 +12,7 @@
     },
     {
       "name": "gcr.io/cloud-builders/docker",
-      "args": ["build", "-t", "widla/system-status-go:$_TAG", "."]
+      "args": ["build", "-t", "widla/system-status-go:latest", "."]
     },
     {
       "name": "gcr.io/cloud-builders/docker",
@@ -20,7 +20,7 @@
     },
     {
       "name": "gcr.io/cloud-builders/docker",
-      "args": ["push", "widla/system-status-go:$_TAG"]
+      "args": ["push", "widla/system-status-go:latest"]
     }
 
   ]
