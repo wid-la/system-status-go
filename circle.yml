@@ -1,0 +1,22 @@
+machine:
+  # services:
+  #   - docker
+
+dependencies:
+  override:
+    # - docker info
+
+test:
+  override:
+    - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
+    # - docker version
+    # - docker build --rm=false -t widla/carebox-client .
+
+deployment:
+  hub:
+    branch: master
+    commands:
+      # - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      # - docker push widla/carebox-client
+      - sudo /opt/google-cloud-sdk/bin/gcloud --quiet components update
+      - sudo /opt/google-cloud-sdk/bin/gcloud auth activate-service-account --key-file ${HOME}/gcloud-service-key.json
