@@ -4,14 +4,12 @@ import (
 	"net/http"
 
 	"github.com/pressly/chi"
-	"github.com/wid-la/system-status-go/pkg/core"
-	"github.com/wid-la/system-status-go/pkg/models"
+	"github.com/wid-la/system-status-go/pkg/interactors"
 )
 
 // API ...
 type API struct {
-	Deps     *core.Dependency
-	Services map[string]models.Service
+	Inter *interactors.Inter
 }
 
 func (api API) ServeHTTP(w http.ResponseWriter, r *http.Request) {
