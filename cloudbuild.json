@@ -1,0 +1,27 @@
+{
+  "steps": [
+    {
+      "name": "gcr.io/cloud-builders/glide",
+      "args": ["install"],
+      "env": ["PROJECT_ROOT=github.com/wid-la/system-status-go"]
+    },
+    {
+      "name": "gcr.io/cloud-builders/go",
+      "args": ["build", "-v", "-a", "-tags", "netgo", "-ldflags", "'-w'"],
+      "env": ["PROJECT_ROOT=github.com/wid-la/system-status-go/cmd/sys-status-srv","CGO_ENABLED=0","GOOS=linux"]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": ["build", "-t", "widla/system-status-go:$_TAG", "."]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": ["login", "-u", "ouralien", "-p", "$_DOCKER_PASS"]
+    },
+    {
+      "name": "gcr.io/cloud-builders/docker",
+      "args": ["push", "widla/system-status-go:$_TAG"]
+    }
+
+  ]
+}
