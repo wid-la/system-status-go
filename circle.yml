@@ -1,11 +1,3 @@
-machine:
-  # services:
-  #   - docker
-
-dependencies:
-  override:
-    # - docker info
-
 test:
   override:
     - echo $GCLOUD_SERVICE_KEY | base64 --decode --ignore-garbage > ${HOME}/gcloud-service-key.json
