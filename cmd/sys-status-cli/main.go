@@ -14,12 +14,13 @@ import (
 // SystemStatus ...
 type SystemStatus struct {
 	URL     string
+	Token   string
 	Service models.Service
 }
 
 // NewSystemStatusCli ...
-func NewSystemStatusCli(url string) SystemStatus {
-	return SystemStatus{URL: url}
+func NewSystemStatusCli(url string, token string) SystemStatus {
+	return SystemStatus{URL: url, Token: token}
 }
 
 // CreateService ...
@@ -56,6 +57,8 @@ func (s *SystemStatus) callEndpoint(method string) {
 		os.Exit(-1)
 	}
 
+	req.Header.Set("content-type", "application/json")
+	req.Header.Set("Auth-Token", s.Token)
 	client := &http.Client{}
 
 	res, err := client.Do(req)
