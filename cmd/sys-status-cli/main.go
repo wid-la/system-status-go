@@ -30,6 +30,7 @@ func (s *SystemStatus) CreateService(key string, name string, desc string, timeO
 		Name:    name,
 		Desc:    desc,
 		TimeOut: timeOut,
+		Status:  "UP",
 	}
 
 	s.callEndpoint("POST")
