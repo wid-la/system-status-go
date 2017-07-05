@@ -5,8 +5,8 @@ import (
 	"net/http"
 	"strconv"
 
-	"git.wid.la/wid/rmala-api/pkg/core"
 	"github.com/pressly/chi"
+	"github.com/wid-la/system-status-go/pkg/core"
 	"github.com/wid-la/system-status-go/pkg/models"
 )
 

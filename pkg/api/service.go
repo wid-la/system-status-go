@@ -75,6 +75,11 @@ func (api API) UpdateService(w http.ResponseWriter, r *http.Request) {
 	service.Desc = req.Desc
 	service.Status = req.Status
 	service.LastUpdated = time.Now().Format(time.RFC3339)
+	if req.TimeOut == 0 {
+		service.TimeOut = api.Inter.Deps.Timeout
+	} else {
+		service.TimeOut = req.TimeOut
+	}
 
 	api.Inter.Services[servID] = service
 

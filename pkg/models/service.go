@@ -1,7 +1,6 @@
 package models
 
 import (
-	"fmt"
 	"time"
 )
 
@@ -23,12 +22,9 @@ func (o *Service) CheckStatus() {
 		o.LastUpdated)
 
 	now := time.Now()
-
 	diff := now.Sub(t1)
 
-	fmt.Println(diff.Seconds())
-
-	if int(diff.Seconds()) > o.TimeOut {
+	if o.Status == "UP" && int(diff.Seconds()) > o.TimeOut {
 		o.Status = "DOWN"
 	}
 }
