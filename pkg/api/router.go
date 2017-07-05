@@ -27,6 +27,15 @@ func (api API) router() http.Handler {
 		r.Route("/:serviceID", func(r chi.Router) {
 			r.Get("/", api.GetService)
 			r.Put("/", api.UpdateService)
+			r.Route("/issues", func(r chi.Router) {
+				r.Post("/", api.NewIssue)
+				r.Get("/", api.GetIssues)
+				r.Route("/:issueID", func(r chi.Router) {
+					r.Get("/", api.GetIssue)
+					r.Put("/", api.UpdateIssue)
+					r.Delete("/", api.DeleteIssue)
+				})
+			})
 		})
 	})
 
